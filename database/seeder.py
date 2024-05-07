@@ -138,7 +138,7 @@ if __name__ == "__main__":
 
 
 ### Ahora vamos a insertar muchos datos a la vez.
-booksList = [
+""" booksList = [
     (4, "Los juegos del hambre", "1934", 295),
     (5, "Harry Potter y la piedra filosofal", "1854", 293),
     (6, "El señor de las moscas", "Desconocido", 278),
@@ -147,7 +147,7 @@ booksList = [
     (9, "El nombre de la rosa", "Algún día", 258),
     (10, "El extranjero", "2023", 255)
 ]
-
+ """
 """ insertBooks(booksList) """
     ### Vamos a insertarla de la misma manera que vimos en el print de readBook() una lista de tuplas.
 """ 

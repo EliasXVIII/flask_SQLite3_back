@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 ##Ahora vamos a importar el formato de tabla que hemos creado en Models.py
 from Models import db, books
-
+from logging import exception
 
 app = Flask(__name__) ## Entre guiones el nombre del fichero actual.
 
@@ -21,10 +21,15 @@ def hello_world():
 
 @app.route("/api/v1/books")
 def getBooks():
-    booksList = books.query.all()
-    print(booksList)
-    return '<h1>prueba</h1>'
+    try:
+        booksList = books.query.all()
+        toReturn = [book.serialize() for book in booksList]
+        return jsonify(toReturn), 200 ## el 200 es el codigo de respuesta. el jsonify nos devuelve el bucle for hecho json.
 
+    except Exception:
+        exception("Falla el servidor!! ")
+        return jsonify({"message": "Falla el servidor!!"}), 500 ## 
+    return '<h1>prueba</h1>'
 
 
 
