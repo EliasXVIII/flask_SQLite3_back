@@ -1,7 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 ##Ahora vamos a importar el formato de tabla que hemos creado en Models.py
 from Models import db, books
 from logging import exception
+import requests
+
 
 
 app = Flask(__name__) ## Entre guiones el nombre del fichero actual.
@@ -20,18 +22,62 @@ db.init_app(app)  ##Esto es para que sepa donde debe iniciar la base de datos ""
 def hello_world():
     return "<h1>My Books!</h1>"
 
-@app.route("/api/v1/books")
+
+
+
+@app.route("/api/v1/books", methods=["GET"])
 def getBooks():
     try:
         booksList = books.query.all()
         toReturn = [book.serialize() for book in booksList]
         return jsonify(toReturn), 200 ## el 200 es el codigo de respuesta. el jsonify nos devuelve el bucle for hecho json.
 
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception:
+        exception("Falla el servidor!! ")
         return jsonify({"message": "Falla el servidor!!"}), 500
-        """ exception("Falla el servidor!! ")
-        return jsonify({"message": "Falla el servidor!!"}), 500 ##  """
+
+
+
+
+@app.route("/api/v1/book", methods=["GET"])
+def getBookByTitle():
+    try:
+        titleBook = request.args["title"]
+        book = books.query.filter_by(title=titleBook).first()
+        if not book:
+            return jsonify({"message": "No se ha encontrado el libro"}), 404
+        else:
+            return jsonify(book.serialize()), 200
+
+    except Exception:
+        exception("Falla el servidor!! ")
+        return jsonify({"message": "Falla el servidor!!"}), 500
+
+
+@app.route("/api/v1/findbook", methods=["GET"])
+def getBook():
+    try:
+        fields = {}
+        if "title" in request.args:
+            fields["title"] = request.args["title"]
+
+        if "year" in request.args:
+            fields["year"] = request.args["year"]
+
+        if "score" in request.args:
+            fields["score"] = request.args["score"]
+
+        book = books.query.filter_by(**fields).first()
+        if not book:
+            return jsonify({"message": "No se ha encontrado el libro"}), 404
+        else:
+            return jsonify(book.serialize()), 200
+
+    except Exception:
+        exception("Falla el servidor!! ")
+        return jsonify({"message": "Falla el servidor!!"}), 500
+    
+
 
 
 
