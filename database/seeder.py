@@ -38,6 +38,20 @@ def insertBook(id, title, year, score):
     conn.close()
 
 
+### Ahora voy a crear una funcion para mostrar los datos de los libros. basicamente para poder leer estos en la base de datos.
+
+def readBook():
+    conn = sql.connect("libros.db")
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM books"
+    cursor.execute(instruccion) ### Es lo mismo que la de crear solo que cambia la instruccion.
+    datos = cursor.fetchall() ###el fetchall hace un recorrido de todos los datos.
+    conn.commit()
+    conn.close()
+    print(datos)
+
+    
+
 
 
 
@@ -49,4 +63,8 @@ if __name__ == "__main__":
 
 """   insertBook(1, "Frankenstein", "1961", 278) """
 """ insertBook(2, "Los viajes de Gulliver", "1921", 269) """
-insertBook(3, "El conde de Montecristo", "sigo XX", 267)
+""" insertBook(3, "El conde de Montecristo", "sigo XX", 267) """
+readBook()
+### al ejecutar readBook() nos da los siguiente
+### [(1, 'Frankenstein', '1961', 278), (2, 'Los viajes de Gulliver', '1921', 269), (3, 'El conde de Montecristo', 'sigo XX', 267)]
+### nos da listas por los [] y dentro de esta nos da tuplas y cada tupla contiene los campos de cada fila.
