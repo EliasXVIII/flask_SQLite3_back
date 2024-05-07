@@ -62,6 +62,16 @@ def insertBooks(booksList):
 
 
 
+### vamos a generar una consulta ordenada por los nombres de los libros o por el año o el score
+def readOrdered(field):
+    conn = sql.connect("libros.db")
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM books ORDER BY {field}"
+    cursor.execute(instruccion)
+    datos = cursor.fetchall() 
+    conn.close()
+    print(datos)
+
 
 
 
@@ -93,5 +103,17 @@ booksList = [
     (10, "El extranjero", "2023", 255)
 ]
 
-insertBooks(booksList)
+""" insertBooks(booksList) """
     ### Vamos a insertarla de la misma manera que vimos en el print de readBook() una lista de tuplas.
+
+readOrdered("title")
+### con esta funcion vamos a ordenar por el parametro que le pasemos a readOrdered("title"||"year"|| score)
+""" [(8, 'Drácula', 'Siglo XVIII', 262), 
+ (3, 'El conde de Montecristo', 'sigo XX', 267), 
+ (10, 'El extranjero', '2023', 255), 
+ (9, 'El nombre de la rosa', 'Algún día', 258), 
+ (6, 'El señor de las moscas', 'Desconocido', 278), 
+ (1, 'Frankenstein', '1961', 278), 
+ (5, 'Harry Potter y la piedra filosofal', '1854', 293), (4, 'Los juegos del hambre', '1934', 295), 
+ (2, 'Los viajes de Gulliver', '1921', 269), 
+ (7, 'Moby Dick', '1987', 277)] """
