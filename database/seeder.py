@@ -50,7 +50,19 @@ def readBook():
     conn.close()
     print(datos)
 
-    
+
+### Ahora esta función sirve para agregar muchos datos a la vez, o sea muchas filas a la vez. NO linea por linea. 
+def insertBooks(booksList):
+    conn = sql.connect("libros.db")
+    cursor = conn.cursor()
+    instruccion = f"INSERT INTO books VALUES (?, ?, ?, ?)" 
+    cursor.executemany(instruccion, booksList) ### usamos executemany porque son varios datos.
+    conn.commit()
+    conn.close()
+
+
+
+
 
 
 
@@ -64,7 +76,22 @@ if __name__ == "__main__":
 """   insertBook(1, "Frankenstein", "1961", 278) """
 """ insertBook(2, "Los viajes de Gulliver", "1921", 269) """
 """ insertBook(3, "El conde de Montecristo", "sigo XX", 267) """
-readBook()
+""" readBook() """
 ### al ejecutar readBook() nos da los siguiente
 ### [(1, 'Frankenstein', '1961', 278), (2, 'Los viajes de Gulliver', '1921', 269), (3, 'El conde de Montecristo', 'sigo XX', 267)]
 ### nos da listas por los [] y dentro de esta nos da tuplas y cada tupla contiene los campos de cada fila.
+
+
+### Ahora vamos a insertar muchos datos a la vez.
+booksList = [
+    (4, "Los juegos del hambre", "1934", 295),
+    (5, "Harry Potter y la piedra filosofal", "1854", 293),
+    (6, "El señor de las moscas", "Desconocido", 278),
+    (7, "Moby Dick", "1987", 277),
+    (8, "Drácula", "Siglo XVIII", 262),
+    (9, "El nombre de la rosa", "Algún día", 258),
+    (10, "El extranjero", "2023", 255)
+]
+
+insertBooks(booksList)
+    ### Vamos a insertarla de la misma manera que vimos en el print de readBook() una lista de tuplas.
