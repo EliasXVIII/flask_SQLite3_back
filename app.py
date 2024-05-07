@@ -29,7 +29,6 @@ def getBooks():
     except Exception:
         exception("Falla el servidor!! ")
         return jsonify({"message": "Falla el servidor!!"}), 500 ## 
-    return '<h1>prueba</h1>'
 
 
 
