@@ -3,6 +3,7 @@ from flask import Flask, jsonify
 from Models import db, books
 from logging import exception
 
+
 app = Flask(__name__) ## Entre guiones el nombre del fichero actual.
 
 ##vamos a conectar la app con la base de datos con alchemy
@@ -26,9 +27,11 @@ def getBooks():
         toReturn = [book.serialize() for book in booksList]
         return jsonify(toReturn), 200 ## el 200 es el codigo de respuesta. el jsonify nos devuelve el bucle for hecho json.
 
-    except Exception:
-        exception("Falla el servidor!! ")
-        return jsonify({"message": "Falla el servidor!!"}), 500 ## 
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"message": "Falla el servidor!!"}), 500
+        """ exception("Falla el servidor!! ")
+        return jsonify({"message": "Falla el servidor!!"}), 500 ##  """
 
 
 
