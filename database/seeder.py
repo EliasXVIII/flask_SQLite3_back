@@ -6,13 +6,13 @@ import sqlite3 as sql
 
 ### con esta funcion vamos a crear la base de datos que le llamaremos libros
 def createDB():
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     conn.commit()
     conn.close()
 
 ### con esta funcion vamos a crear la base de dato y no es mas que un String ya que las bases de datos no son mas que eso.
 def createTable():
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     cursor.execute(
         """CREATE TABLE books (
@@ -30,7 +30,7 @@ def createTable():
 
 ### Ahora voy a crear una funcion para insertar los datos de los libros.
 def insertBook(id, title, year, score):
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"INSERT INTO books VALUES ({id}, '{title}', '{year}', {score})"
     cursor.execute(instruccion)
@@ -41,7 +41,7 @@ def insertBook(id, title, year, score):
 ### Ahora voy a crear una funcion para mostrar los datos de los libros. basicamente para poder leer estos en la base de datos.
 
 def readBook():
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"SELECT * FROM books"
     cursor.execute(instruccion) ### Es lo mismo que la de crear solo que cambia la instruccion.
@@ -53,7 +53,7 @@ def readBook():
 
 ### Ahora esta función sirve para agregar muchos datos a la vez, o sea muchas filas a la vez. NO linea por linea. 
 def insertBooks(booksList):
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"INSERT INTO books VALUES (?, ?, ?, ?)" 
     cursor.executemany(instruccion, booksList) ### usamos executemany porque son varios datos.
@@ -64,7 +64,7 @@ def insertBooks(booksList):
 
 ### vamos a generar una consulta ordenada por los nombres de los libros o por el año o el score
 def readOrdered(field):
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"SELECT * FROM books ORDER BY {field}"
     cursor.execute(instruccion)
@@ -79,7 +79,7 @@ def readOrdered(field):
 ### Vamos a crear una consulta para el WHERE 
 
 def search():
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"SELECT * FROM books WHERE title='Drácula'"
     cursor.execute(instruccion)
@@ -89,7 +89,7 @@ def search():
 
 
 def searchLike():
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"SELECT * FROM books WHERE title like 'FRANKENSTEIN'"
     cursor.execute(instruccion)
@@ -101,7 +101,7 @@ def searchLike():
 ### Ahora vamos a actualizar los datos que tenemos en tabla con esta función para que si necesitamos modificar o actualizar datos.
 
 def updateFields():
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"UPDATE books SET year='2000' WHERE title='El señor de las moscas'"
     cursor.execute(instruccion) 
@@ -111,7 +111,7 @@ def updateFields():
 
 ### Ahora vamos a eliminar datos en tabla con esta función
 def deleteRows():
-    conn = sql.connect("libros.db")
+    conn = sql.connect("database/libros.db")
     cursor = conn.cursor()
     instruccion = f"DELETE FROM books WHERE title='Drácula'"
     cursor.execute(instruccion) 
@@ -171,4 +171,3 @@ readOrdered("title") """
 """ searchLike() """
 
 """ updateFields() """
-pass
