@@ -76,6 +76,51 @@ def readOrdered(field):
 
 
 
+### Vamos a crear una consulta para el WHERE 
+
+def search():
+    conn = sql.connect("libros.db")
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM books WHERE title='Drácula'"
+    cursor.execute(instruccion)
+    datos = cursor.fetchall() 
+    conn.close()
+    print(datos)
+
+
+def searchLike():
+    conn = sql.connect("libros.db")
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM books WHERE title like 'FRANKENSTEIN'"
+    cursor.execute(instruccion)
+    datos = cursor.fetchall() 
+    conn.close()
+    print(datos)
+
+
+### Ahora vamos a actualizar los datos que tenemos en tabla con esta función para que si necesitamos modificar o actualizar datos.
+
+def updateFields():
+    conn = sql.connect("libros.db")
+    cursor = conn.cursor()
+    instruccion = f"UPDATE books SET year='2000' WHERE title='El señor de las moscas'"
+    cursor.execute(instruccion) 
+    conn.commit()
+    conn.close()
+
+
+### Ahora vamos a eliminar datos en tabla con esta función
+def deleteRows():
+    conn = sql.connect("libros.db")
+    cursor = conn.cursor()
+    instruccion = f"DELETE FROM books WHERE title='Drácula'"
+    cursor.execute(instruccion) 
+    conn.commit()
+    conn.close()
+
+
+
+
 
 ### Con esta instruccion solo ejejuta si estoy dentro de este archivo.
 if __name__ == "__main__":
@@ -105,8 +150,8 @@ booksList = [
 
 """ insertBooks(booksList) """
     ### Vamos a insertarla de la misma manera que vimos en el print de readBook() una lista de tuplas.
-
-readOrdered("title")
+""" 
+readOrdered("title") """
 ### con esta funcion vamos a ordenar por el parametro que le pasemos a readOrdered("title"||"year"|| score)
 """ [(8, 'Drácula', 'Siglo XVIII', 262), 
  (3, 'El conde de Montecristo', 'sigo XX', 267), 
@@ -117,3 +162,13 @@ readOrdered("title")
  (5, 'Harry Potter y la piedra filosofal', '1854', 293), (4, 'Los juegos del hambre', '1934', 295), 
  (2, 'Los viajes de Gulliver', '1921', 269), 
  (7, 'Moby Dick', '1987', 277)] """
+
+
+""" search() """
+### en nuestro print nos devuelve esto la consulta WHERE 
+""" [(8, 'Drácula', 'Siglo XVIII', 262)] """
+
+""" searchLike() """
+
+""" updateFields() """
+pass
