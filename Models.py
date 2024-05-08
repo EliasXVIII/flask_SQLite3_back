@@ -7,7 +7,7 @@ class books(db.Model): ## Esto indica que es una clase de tipo modelo
     title = db.Column(db.String(200), unique=True, nullable=False)
     year = db.Column(db.String(200), nullable=False)
     score = db.Column(db.Integer)
-    
+
 
     def __str__(self):
         return "\nId: {}. Title: {}. Year: {}. Score: {}.\n".format(

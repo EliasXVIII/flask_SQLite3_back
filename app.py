@@ -4,9 +4,22 @@ from Models import db, books
 from logging import exception
 import requests
 
+####### Esto pertenece a JWT #####
+from routes.auth import routes_auth
+from dotenv import load_dotenv
+####### Esto pertenece a JWT #####
+
 
 
 app = Flask(__name__) ## Entre guiones el nombre del fichero actual.
+
+####### Esto pertenece a JWT #####
+app.register_blueprint(routes_auth, url_prefix="/api")
+####### Esto pertenece a JWT #####
+
+
+
+
 
 ##vamos a conectar la app con la base de datos con alchemy
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../database/libros.db"
@@ -82,4 +95,7 @@ def getBook():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=4000)
+    ####### Esto pertenece a JWT #####
+    load_dotenv()
+    ####### Esto pertenece a JWT #####
+    app.run(debug=True, port="4000", host="0.0.0.0")

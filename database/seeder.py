@@ -147,7 +147,7 @@ if __name__ == "__main__":
     (9, "El nombre de la rosa", "Algún día", 258),
     (10, "El extranjero", "2023", 255)
 ]
- """
+"""
 """ insertBooks(booksList) """
     ### Vamos a insertarla de la misma manera que vimos en el print de readBook() una lista de tuplas.
 """ 
