@@ -20,7 +20,7 @@ db.init_app(app)  ##Esto es para que sepa donde debe iniciar la base de datos ""
 #Vamos a crear un decorador
 @app.route("/")
 def hello_world():
-    return "<h1>My Books!</h1>"
+    return "<h1>My Books en Libros.db!</h1>"
 
 
 

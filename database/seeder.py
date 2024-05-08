@@ -128,7 +128,7 @@ if __name__ == "__main__":
 ### desde aca la ejecutamos.
     """ createTable() """
 
-"""   insertBook(1, "Frankenstein", "1961", 278) """
+""" insertBook(1, "Frankenstein", "1961", 278) """
 """ insertBook(2, "Los viajes de Gulliver", "1921", 269) """
 """ insertBook(3, "El conde de Montecristo", "sigo XX", 267) """
 """ readBook() """
