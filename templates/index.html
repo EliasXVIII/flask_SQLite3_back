@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books</title>
+</head>
+<body>
+    <h1>Añade tu libro Favorito</h1>
+
+   <!--  Vamos a añadir un formulario con el metodo POST
+    en el action agregamos la ruta /api/addbook -->
+    <form action="/api/addbook" method="post">
+        <label for="title">Nombre del Libro</label><br>
+        <input type="text" id="title" name="title" placeholder="Ingresa tu libro Favorito">
+<br>
+<br>
+        <label for="year">Año de publicación</label><br>
+        <input type="text" id="year" name="year" placeholder="Ingresa el año de publicación">
+<br>
+<br>
+        <label for="score">Ranking</label><br>
+        <input type="number" id="score" name="score" placeholder="Ingresa su puntuación">
+<br>
+<br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

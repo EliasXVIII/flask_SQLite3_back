@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template ##Render template nos ayuda a publicar o enlazar el html
+
 ##Ahora vamos a importar el formato de tabla que hemos creado en Models.py
 from Models import db, books
 from logging import exception
@@ -34,10 +35,8 @@ db.init_app(app)  ##Esto es para que sepa donde debe iniciar la base de datos ""
 
 #Vamos a crear un decorador
 @app.route("/")
-def hello_world():
-    return "<h1>My Books en Libros.db!</h1>"
-
-
+def home():
+    return render_template("index.html")
 
 
 @app.route("/api/v1/books", methods=["GET"])
