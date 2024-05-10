@@ -8,6 +8,7 @@
 
 </head>
 <body>
+    <div>
     <h1>Añade tu libro Favorito</h1>
 
    <!--  Vamos a añadir un formulario con el metodo POST
@@ -16,16 +17,24 @@
         <label for="title">Nombre del Libro</label><br>
         <input type="text" id="title" name="title" placeholder="Ingresa tu libro Favorito">
 <br>
-<br>
         <label for="year">Año de publicación</label><br>
         <input type="text" id="year" name="year" placeholder="Ingresa el año de publicación">
-<br>
 <br>
         <label for="score">Ranking</label><br>
         <input type="text" id="score" name="score" placeholder="Ingresa su puntuación">
 <br>
-<br>
         <input type="submit" value="Enviar">
     </form>
+</div>
+<div>
+    
+    <h3>Busca Tu libro Favorito</h3>
+
+     <form action="/api/addbook" method="post">
+         <label for="title">Buscador de libros</label><br>
+         <input type="text" id="title" name="title" placeholder="Ingresa el título de tu libro">
+     </form>
+    </div>
+    <br>
 </body>
 </html>
