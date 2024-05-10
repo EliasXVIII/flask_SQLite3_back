@@ -8,6 +8,7 @@ from flask import Blueprint, jsonify, request
 
 from function_jwt import write_token, validate_token
 
+
 routes_auth = Blueprint("routes_auth", __name__)## aca Blueprint recibe el nombre de routes_auth y guardamos esta varialble en routes_auth
 
 @routes_auth.route("/login", methods=["POST"]) ##vamos a crear una ruta para la autenticacion o login con el routes_auth que creamos antes y le aplicamos la ruta(route y dentro la ruta y el metodo "post" en este caso.)
