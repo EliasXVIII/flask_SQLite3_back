@@ -81,7 +81,7 @@ def getBook():
         if "score" in request.args:
             fields["score"] = request.args["score"]
 
-        book = books.query.filter_by(**fields).first()
+        book = books.query.filter_by(**fields)[1]
         if not book:
             return jsonify({"message": "No se ha encontrado el libro"}), 404
         else:
