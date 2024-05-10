@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
     <h1>Añade tu libro Favorito</h1>
@@ -20,7 +22,7 @@
 <br>
 <br>
         <label for="score">Ranking</label><br>
-        <input type="number" id="score" name="score" placeholder="Ingresa su puntuación">
+        <input type="text" id="score" name="score" placeholder="Ingresa su puntuación">
 <br>
 <br>
         <input type="submit" value="Enviar">

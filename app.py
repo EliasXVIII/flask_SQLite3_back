@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template ##Render template nos ayuda a publicar o enlazar el html
+from flask import Flask, jsonify, request, render_template, url_for ##Render template nos ayuda a publicar o enlazar el html
 
 ##Ahora vamos a importar el formato de tabla que hemos creado en Models.py
 from Models import db, books
@@ -92,7 +92,23 @@ def getBook():
         return jsonify({"message": "Falla el servidor!!"}), 500
     
 
+## Ahora voy a crear la ruta para agregar todos los datos que voy a incorporar por el formulario.
+@app.route("/api/addbook", methods=["POST"])
+def addBook():
+    try:
+        title = request.form["title"]
+        year = request.form["year"]
+        score = request.form["score"]
 
+        newBook = books(title,year,int(score))
+        db.session.add(newBook)
+        db.session.commit()
+
+        return jsonify(newBook.serialize()), 200
+    
+    except Exception:
+        exception("\n [SERVER]: Error en la ruta /api/addbook. log: \n")
+        return jsonify({"message": "Error al cargar el libro!!"}), 500
 
 
 if __name__ == "__main__":

@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 1.25rem; 
+}
+
+form {
+    max-width: 31.25rem;
+    margin: 0 auto;
+    padding: 1.25rem; 
+    background-color: #fff;
+    border-radius: 0.625rem; 
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1); 
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3125rem; 
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.625rem; 
+    margin-bottom: 0.625rem; 
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem; 
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 0.625rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.3125rem; 
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 37.5rem) { 
+    form {
+        padding: 0.625rem; 
+    }
+    input[type="text"] {
+        padding: 0.5rem;
+    }
+    input[type="submit"] {
+        padding: 0.5rem; 
+    }
+}
