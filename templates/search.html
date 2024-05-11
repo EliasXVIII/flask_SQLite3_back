@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div>
+    
+    <h1>Busca Tu libro Favorito</h1>
+
+     <form action="/api/search" method="post">
+         <label for="title">Buscador de libros</label><br>
+         <input type="text" id="title" name="title" placeholder="Ingresa el título de tu libro">
+         <br>
+         <br>
+         <input type="submit" value="Enviar">
+     </form>
+
+     <h3>¿Quieres eliminar un libro?</h3>
+<h3><button><a href="delete.html">Click Aquí</a></button></h3>
+    </div>
+    <br>
+</body>
+</html>

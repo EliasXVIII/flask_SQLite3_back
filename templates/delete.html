@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div>
+    
+    <h1>Elimina ese libro que no te ha gustado</h1>
+
+     <form id="deleteForm">
+         <label for="title">Elimina el libro</label><br>
+         <input type="text" id="title" name="title" placeholder="Ingresa el título de tu libro">
+         <br>
+         <br>
+         <input type="submit" value="BORRAR">
+     </form>
+    </div>
+    <br>
+
+    <script>
+        document.getElementById("deleteForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar el envío predeterminado del formulario
+
+            var title = document.getElementById("title").value; // Obtener el título del libro
+
+            fetch(`/api/delete?title=${title}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Libro eliminado exitosamente");
+                    // Aquí puedes redirigir o realizar alguna acción adicional después de eliminar el libro
+                } else {
+                    console.error("Error al eliminar el libro");
+                }
+            })
+            .catch(error => {
+                console.error("Error de red:", error);
+            });
+        });
+    </script>
+</body>
+</html>
