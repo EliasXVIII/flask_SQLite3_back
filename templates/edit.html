@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Libro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <li>
+            <a href="search.html">Buscar Libro</a>
+            <a href="http://127.0.0.1:4000/">Añadir Libro</a>
+            <a href="edit.html">Modifica tu Libro</a>
+            <a href="delete.html">Eliminar Libro</a>
+        </li>
+    </div>
+    <div>
+        <h1>Modificar Libro</h1>
+        <form id="updateForm">
+            <label for="title">Título del Libro:</label><br>
+            <input type="text" id="title" name="title" placeholder="Ingresa el título del libro"><br>
+            <label for="new_year">Nuevo Año de Publicación:</label><br>
+            <input type="text" id="new_year" name="new_year" placeholder="Ingresa el nuevo año de publicación"><br>
+            <label for="new_score">Nuevo Ranking:</label><br>
+            <input type="text" id="new_score" name="new_score" placeholder="Ingresa el nuevo ranking"><br>
+            <input type="submit" value="Modificar">
+        </form>
+    </div>
+
+    <script>
+        const updateForm = document.getElementById("updateForm");
+        updateForm.addEventListener("submit", function(event){
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            // Obtener los datos del formulario
+            const formData = new FormData(this);
+
+            // Realizar una solicitud PUT para actualizar el libro
+            fetch("/api/updatebook", {
+                method: "PUT",
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al modificar el libro");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message); // Mostrar mensaje de éxito
+                // Limpiar el formulario después de la modificación exitosa
+                document.getElementById("updateForm").reset();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Hubo un error al modificar el libro. Por favor, intenta nuevamente.");
+            });
+        });
+    </script>
+</body>
+</html>
