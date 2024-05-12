@@ -6,23 +6,16 @@ from Models import db, books
 from logging import exception
 import requests
 
-
+app = Flask(__name__) ## Entre guiones el nombre del fichero actual.
 
 ####### Esto pertenece a JWT #####
 from routes.auth import routes_auth
 from dotenv import load_dotenv
 ####### Esto pertenece a JWT #####
 
-
-
-app = Flask(__name__) ## Entre guiones el nombre del fichero actual.
-
 ####### Esto pertenece a JWT #####
 app.register_blueprint(routes_auth, url_prefix="/api")
 ####### Esto pertenece a JWT #####
-
-
-
 
 
 ##vamos a conectar la app con la base de datos con alchemy
@@ -31,7 +24,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../database/libros.db"
 ## Con esta linea vamos a limpiar la consola a la hora de las consultas
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)  ##Esto es para que sepa donde debe iniciar la base de datos """
-
 
 
 #Vamos a crear un decorador

@@ -27,3 +27,5 @@ def login(): ## ene sta funcion vamos  meter la solicitud de usuario y contrase√
 def verify():
     token = request.headers['Authorization'].split(" ")[1]
     return validate_token(token, output=True)
+
+""" https://www.youtube.com/watch?v=3o4vEIkiRgE """
