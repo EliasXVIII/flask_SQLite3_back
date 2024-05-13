@@ -28,4 +28,25 @@ def verify():
     token = request.headers['Authorization'].split(" ")[1]
     return validate_token(token, output=True)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 """ https://www.youtube.com/watch?v=3o4vEIkiRgE """
