@@ -53,7 +53,7 @@ def getBooks():
     try:
         booksList = books.query.all()
         toReturn = [book.serialize() for book in booksList]
-        return jsonify(toReturn), 200 ## el 200 es el codigo de respuesta. el jsonify nos devuelve el bucle for hecho json.
+        return jsonify(toReturn), 200
 
     except Exception:
         exception("Falla el servidor!! ")

@@ -22,7 +22,7 @@ def expire_date(days: int):
 def write_token(data: dict):
     ###ahora vamos a llamar a encode() y esa funcion va a recibir lo que va encripta con payload y luego el KEY que es la info con la que va a encriptar ese valor
     token = encode(payload={**data, "exp":expire_date(2)}, key=getenv("SECRET"), algorithm="HS256")
-    return token.encode("UTF-8")
+    return token.decode("UTF-8") ##en casa tengo que usar encode!!!! OJO!!! 
 
 ## Ahora vamos a crear una funcion para validar y esta funcion va a recibir el token y si queire demostrar la salida. 
 
