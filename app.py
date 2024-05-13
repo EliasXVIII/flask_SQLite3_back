@@ -195,7 +195,35 @@ def updateBook():
         exception(f"Falla en el servidor al actualizar el libro: {str(e)}")
         return jsonify({"message": "Error interno del servidor al actualizar el libro"}), 500
 
+##############3 Este es para consultar a través de postman
+@app.route("/api/updatebook", methods=["PUT"])
+def updateBookPostman():
+    try:
+        # Obtener los datos del libro a modificar del cuerpo de la solicitud PUT
+        title = request.args.get("title")
+        new_year = request.args.get("new_year")
+        new_score = request.args.get("new_score")
 
+        # Buscar el libro por su título en la base de datos
+        book = books.query.filter_by(title=title).first()
+        if not book:
+            # Si el libro no existe, devuelve un mensaje de error
+            return jsonify({"message": "El libro no existe"}), 404
+
+        # Actualizar los datos del libro con los nuevos valores
+        book.year = new_year
+        book.score = new_score
+
+        # Guardar los cambios en la base de datos
+        db.session.commit()
+
+        # Devolver un mensaje de éxito
+        return jsonify({"message": "Libro actualizado exitosamente"}), 200
+
+    except Exception as e:
+        # Si ocurre algún error durante el proceso, devuelve un mensaje de error interno del servidor
+        exception(f"Falla en el servidor al actualizar el libro: {str(e)}")
+        return jsonify({"message": "Error interno del servidor al actualizar el libro"}), 500
 
 if __name__ == "__main__":
     ####### Esto pertenece a JWT #####
