@@ -177,7 +177,7 @@ def updateBook():
         # Buscar el libro por su título en la base de datos
         book = books.query.filter_by(title=title).first()
         if not book:
-            # Si el libro no existe, devuelve un mensaje de error
+            # Si el libro no existe, que de un mensaje de error
             return jsonify({"message": "El libro no existe"}), 404
 
         # Actualizar los datos del libro con los nuevos valores

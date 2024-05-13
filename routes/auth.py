@@ -28,6 +28,8 @@ def verify():
     token = request.headers['Authorization'].split(" ")[1]
     return validate_token(token, output=True)
 
+### En esta web puedo verificar los token
+##https://jwt.io/
 
 
 

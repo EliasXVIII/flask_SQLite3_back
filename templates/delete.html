@@ -30,10 +30,11 @@
     <br>
 
     <script>
-        document.getElementById("deleteForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Evitar el envío predeterminado del formulario
+       const deleteForm =  document.getElementById("deleteForm");
+       addEventListener("submit", function(event) {
+            event.preventDefault(); 
 
-            var title = document.getElementById("title").value; // Obtener el título del libro
+            let title = document.getElementById("title").value; 
 
             fetch(`/api/delete?title=${title}`, {
                 method: "DELETE"

@@ -20,7 +20,8 @@ def expire_date(days: int):
 ## voy a crear una funcion va a recibir el data que va a ser de tipo diccionario.
 def write_token(data: dict):##Esta funcin toma un diccionario data como entrada.
     ###ahora vamos a llamar a encode() y esa funcion va a recibir lo que va encripta con payload y luego el KEY almacenada en la variable getenv que es la info con la que va a encriptar ese valor
-    token = encode(payload={**data, "exp":expire_date(2)}, key=getenv("SECRET"), algorithm="HS256")
+    token = encode(payload={**data, "exp":expire_date(2)}, key=getenv("SECRET"), algorithm="HS256") 
+    ##el encode es que nos esta firmando el token
     return token.encode("UTF-8") ##en casa tengo que usar encode!!!! OJO!!! Luego va a devolver el token codificado en UTF-8
 
 

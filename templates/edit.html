@@ -31,12 +31,9 @@
     <script>
         const updateForm = document.getElementById("updateForm");
         updateForm.addEventListener("submit", function(event){
-            event.preventDefault(); // Evita que el formulario se envíe automáticamente
-
-            // Obtener los datos del formulario
+            event.preventDefault(); //Con esto voy a evitar que el formulario se envie directamente
             const formData = new FormData(this);
 
-            // Realizar una solicitud PUT para actualizar el libro
             fetch("/api/updatebook", {
                 method: "PUT",
                 body: formData
@@ -48,7 +45,7 @@
                 return response.json();
             })
             .then(data => {
-                alert(data.message); // Mostrar mensaje de éxito
+                alert(data.message); 
                 // Limpiar el formulario después de la modificación exitosa
                 document.getElementById("updateForm").reset();
             })
